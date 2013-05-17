@@ -5,6 +5,15 @@ var _ = {};
   // Return an array of the last n elements of an array. If n is undefined,
   // return just the last element.
   _.last = function(array, n) {
+    if (n != undefined) {
+      var arrayHolder = Array.prototype.slice.call(array);
+      var newArray = arrayHolder.slice(Math.max(0, arrayHolder.length - n), arrayHolder.length + 1);
+      return newArray;
+    }
+    else {
+      var poppedValue = array.pop();
+      return poppedValue;
+    }
   };
 
   // Like last, but for the first elements
