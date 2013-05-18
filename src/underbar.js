@@ -7,7 +7,11 @@ var _ = {};
   _.last = function(array, n) {
     if (n != undefined) {
       var arrayHolder = Array.prototype.slice.call(array);
-      var newArray = arrayHolder.slice(Math.max(0, arrayHolder.length - n), arrayHolder.length + 1);
+      var newArray = []
+      var size = Math.max(array.length, n)
+      for (var i = 0; i < n && i < array.length; i++) {
+        newArray.unshift(arrayHolder.pop());
+      }
       return newArray;
     }
     else {
@@ -19,7 +23,9 @@ var _ = {};
   // Like last, but for the first elements
   _.first = function(array, n) {
     // TIP: you can often re-use similar functions in clever ways, like so:
-    return _.last(array.reverse(), n);
+    var arrayHolder = Array.prototype.slice.call(array);
+    var newArray = _.last(arrayHolder.reverse(), n);
+    return newArray.reverse();
   };
 
 
