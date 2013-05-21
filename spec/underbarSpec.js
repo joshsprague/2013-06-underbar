@@ -148,7 +148,7 @@ describe("map", function() {
     expect(doubled).to.eql([2, 4, 6]);
   });
 });
-/*
+
 describe("pluck", function() {
   it("should return values contained at a user-defined property", function() {
     var people = [
@@ -187,7 +187,7 @@ describe("invoke with function reference", function() {
     expect(result[1]).to.eql([1, 2, 3]);
   });
 });
-
+/*
 describe("reduce", function() {
   it("should be able to sum up an array", function() {
     var callback = function(sum, num) {return sum + num; };
