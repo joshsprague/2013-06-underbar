@@ -5,10 +5,15 @@ var _ = {};
   // Return an array of the last n elements of an array. If n is undefined,
   // return just the last element.
   _.last = function(array, n) {
-    if (n != undefined) {
-      var arrayHolder = Array.prototype.slice.call(array);
+    //Check for empty array first
+    if (array === []) {
+      return [];
+    }
+    //Check for n argument
+    else if (n != undefined) {
+      var arrayHolder = Array.prototype.slice.call(array); //convert to array type
       var newArray = []
-      var size = Math.max(array.length, n)
+
       for (var i = 0; i < n && i < array.length; i++) {
         newArray.unshift(arrayHolder.pop());
       }
@@ -23,14 +28,16 @@ var _ = {};
   // Like last, but for the first elements
   _.first = function(array, n) {
     // TIP: you can often re-use similar functions in clever ways, like so:
-    var arrayHolder = Array.prototype.slice.call(array);
-    var newArray = _.last(arrayHolder.reverse(), n);
+    var newArray = Array.prototype.slice.call(_.last(array.reverse(), n));
     return newArray.reverse();
   };
 
 
   // Call iterator(value, key, collection) for each element of collection
   _.each = function(obj, iterator) {
+    for (var i = 0; i < obj.length; i++) {
+      iterator(obj[i], i , obj);
+    }
   };
 
   /*
@@ -55,6 +62,13 @@ var _ = {};
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, iterator) {
+    var result = []
+    for (var i = 0; i < collection.length; i++) {
+      if (iterator(collection[i]) == true) {
+        result[result.length] = collection[i];
+      }
+    return result;
+    }
   };
 
   // Return all elements of an array that don't pass a truth test.
