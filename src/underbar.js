@@ -90,6 +90,18 @@ var _ = {};
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var result = [];
+    
+    _.each(array, function(item, index) {
+      var checkList = array;
+      for (i = 0; i < checkList.length; i++) {
+        if (item !== checkList[checkList.length - 1]) {
+          result[result.length] = item;
+        }
+        checkList.pop()
+      }
+      return result;
+    })
   };
 
 
@@ -101,6 +113,11 @@ var _ = {};
 
   // Return the results of applying an iterator to each element.
   _.map = function(array, iterator) {
+    var result = []
+    for (var i = 0; i < array.length; i++) {
+      result[result.length] = iterator(array[i], i , array);
+    }
+    return result;
   };
 
   /*
