@@ -28,8 +28,7 @@ var _ = {};
   // Like last, but for the first elements
   _.first = function(array, n) {
     // TIP: you can often re-use similar functions in clever ways, like so:
-    var newArray = Array.prototype.slice.call(_.last(array.reverse(), n));
-    return newArray.reverse();
+    return Array.prototype.reverse.call(_.last(Array.prototype.reverse.call(array), n));
   };
 
 
