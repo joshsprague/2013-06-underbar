@@ -90,17 +90,12 @@ var _ = {};
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
     var result = [];
-    
     _.each(array, function(item, index) {
-      var checkList = array;
-      for (i = 0; i < checkList.length; i++) {
-        if (item !== checkList[checkList.length - 1]) {
+      if (!_.contains(result, item)) {
           result[result.length] = item;
-        }
-        checkList.pop()
       }
-      return result;
-    })
+    });
+    return result;
     //Use object keys to prevent repeats
   };
 
