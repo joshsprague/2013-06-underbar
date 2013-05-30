@@ -298,7 +298,7 @@ var _ = {};
     var length = obj.length;
     var holder;
 
-    for (i = 0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
       var randomIndex = Math.floor(Math.random() * (length - 1));
 
       holder = obj[length];
