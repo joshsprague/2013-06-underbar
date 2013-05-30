@@ -159,7 +159,7 @@ var _ = {};
   //
   _.reduce = function(obj, iterator, initialValue) {
     var result = initialValue ? initalValue : 0;
-    _.each (obj, function(item, index) {
+    _.each (obj, function(item) {
       result = iterator(result, item);
     });
     return result;
@@ -169,7 +169,7 @@ var _ = {};
   _.contains = function(collection, target) {
     // TIP: A lot of iteration problems can be most easily expressed in
     // terms of reduce(). Here's a freebie to demonstrate!
-    return _.reduce(collection, function(wasFound, item){
+    return _.reduce(Array.prototype.slice.call(collection), function(wasFound, item){
       if(wasFound){
         return true;
       }
@@ -180,6 +180,14 @@ var _ = {};
 
   // Determine whether all of the elements match a truth test.
   _.every = function(obj, iterator) {
+    return _.reduce(obj, iterator);
+  /*  if (_.reduce(obj, iterator) == 0) {
+      return true;
+    }
+    else {
+      return false;
+    }*/
+
     // TIP: use reduce on this one!
   };
 
@@ -207,11 +215,29 @@ var _ = {};
   //   }); // obj1 now contains key1, key2, key3 and bla
   //
   _.extend = function(obj) {
+    _.each(Array.prototype.slice.call(arguments, 1), function(source) {
+      if (source) {
+        for (var property in source) {
+          obj[property] = source[property];
+        }
+      }
+    });
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    _.each(Array.prototype.slice.call(arguments, 1), function(source) {
+      if (source) {
+        for (var property in source) {
+          if (obj[property] === undefined) {
+            obj[property] = source[property];
+          }
+        }
+      }
+    });
+    return obj;
   };
 
 
