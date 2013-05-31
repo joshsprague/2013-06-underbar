@@ -175,13 +175,15 @@ var _ = {};
 
   // Determine whether all of the elements match a truth test.
   _.every = function(obj, iterator) {
-    return _.reduce(obj, iterator);
-  /*  if (_.reduce(obj, iterator) == 0) {
-      return true;
+    var test = true;
+    
+    for (var i = 0; i < obj.length; i++) {
+      if (iterator(obj[i]) != true) {
+        test = false;
+      }
     }
-    else {
-      return false;
-    }*/
+    return test;
+    
 
     // TIP: use reduce on this one!
   };
