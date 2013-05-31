@@ -192,6 +192,11 @@ var _ = {};
   // provided, provide a default one
   _.any = function(obj, iterator) {
     // TIP: re-use every() here
+    var defaultIterator = iterator ? iterator : function(arg) { return arg };
+
+    return !_.every(obj, function(item) {
+      return !defaultIterator(item); //Thanks Tony and Al!
+    });
   };
 
 
