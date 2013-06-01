@@ -187,7 +187,7 @@ describe("invoke with function reference", function() {
     expect(result[1]).to.eql([1, 2, 3]);
   });
 });
-/*
+
 describe("reduce", function() {
   it("should be able to sum up an array", function() {
     var callback = function(sum, num) {return sum + num; };
@@ -304,6 +304,7 @@ describe("any", function() {
     expect(_.any([0], passThrough)).to.equal(false);
   });
 });
+
 
 describe("extend", function() {
   it("should extend an object with the attributes of another", function() {
@@ -427,13 +428,13 @@ describe("delay", function() {
 
 describe("shuffle", function() {
   it("should not modify the original object", function() {
-    var numbers = _.range(10);
+    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     var shuffled = _.shuffle(numbers);
 
     expect(shuffled.sort()).to.eql(numbers);
   });
 });
-
+/*
 describe("sortBy", function() {
   it("should sort by age", function() {
     var people = [{name : 'curly', age : 50}, {name : 'moe', age : 30}];
