@@ -277,8 +277,15 @@ var _ = {};
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
-    var fib = function(n) {
-      return n < 2 ? n : fib(n - 1) + fib(n - 2);
+    var computed = false;
+    var computation;
+
+    return function() {
+      if(!computed) {
+        computation = func.apply(this, arguments);
+        computed = true;
+      }
+      return computation;
     };
   };
 
